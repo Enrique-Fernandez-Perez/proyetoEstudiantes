@@ -29,6 +29,8 @@ public class GetByIdEstudiantePortRepository implements GetByIdEstudiantePort {
                 estudianteJpa.getNombre(),
                 estudianteJpa.getApellidos(),
                 estudianteJpa.getEmail(),
+                estudianteJpa.getFechaEntrada(),
+                estudianteJpa.getCiudad(),
                 estudianteJpa.getNumHorasSemanales(),
                 estudianteJpa.getEspecialidad(),
                 estudianteJpa.getEstado()

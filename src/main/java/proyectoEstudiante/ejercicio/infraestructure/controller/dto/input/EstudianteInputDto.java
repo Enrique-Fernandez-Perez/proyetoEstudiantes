@@ -1,11 +1,13 @@
 package proyectoEstudiante.ejercicio.infraestructure.controller.dto.input;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import proyectoEstudiante.ejercicio.infraestructure.controller.dto.output.EstudianteOutputDto;
 
 import javax.persistence.Column;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -17,6 +19,11 @@ public class EstudianteInputDto {
     private String apellidos;
 
     private String email;
+
+    @JsonFormat(pattern="MM/dd/yyyy")
+    private LocalDate fechaEntrada;
+
+    private String ciudad;
 
     private double numHorasSemanales;
 
@@ -45,6 +52,12 @@ public class EstudianteInputDto {
 
         if(e.email == null)
             e.setEmail("email vacio");
+
+        if (e.ciudad.matches("^[0-9]+$")) {
+            e.setApellidos("Ciudad Invalida");
+        }
+        if(e.ciudad == null)
+            e.setApellidos("Ciudad vacia");
 
         if(e.numHorasSemanales < 0 || e.numHorasSemanales > 40 || Double.isNaN(e.numHorasSemanales))
             e.setNumHorasSemanales(0);

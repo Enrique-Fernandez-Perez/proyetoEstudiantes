@@ -2,7 +2,6 @@ package proyectoEstudiante.ejercicio.infraestructure.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import proyectoEstudiante.ejercicio.domain.EstudianteJpa;
 import proyectoEstudiante.ejercicio.infraestructure.controller.dto.output.EstudianteOutputDto;
 import proyectoEstudiante.ejercicio.infraestructure.repository.jpa.EstudianteJpaRepository;
@@ -24,6 +23,8 @@ public class GetEstudiantePortRepository implements GetEstudiantePort {
                         estudianteJpa.getNombre(),
                         estudianteJpa.getApellidos(),
                         estudianteJpa.getEmail(),
+                        estudianteJpa.getFechaEntrada(),
+                        estudianteJpa.getCiudad(),
                         estudianteJpa.getNumHorasSemanales(),
                         estudianteJpa.getEspecialidad(),
                         estudianteJpa.getEstado()

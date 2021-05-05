@@ -23,6 +23,8 @@ public class CreateEstudiantePortRepositorio implements CreateEstudiantePort {
         estudianteJpa.setNombre(estudianteInputDto.getNombre());
         estudianteJpa.setApellidos(estudianteInputDto.getApellidos());
         estudianteJpa.setEmail(estudianteInputDto.getEmail());
+        estudianteJpa.setFechaEntrada(estudianteInputDto.getFechaEntrada());
+        estudianteJpa.setCiudad(estudianteInputDto.getCiudad());
         estudianteJpa.setNumHorasSemanales(estudianteInputDto.getNumHorasSemanales());
         estudianteJpa.setEspecialidad(estudianteInputDto.getEspecialidad());
         estudianteJpa.setEstado(estudianteInputDto.getEstado());
