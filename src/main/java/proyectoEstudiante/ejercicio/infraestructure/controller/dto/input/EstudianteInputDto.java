@@ -2,12 +2,14 @@ package proyectoEstudiante.ejercicio.infraestructure.controller.dto.input;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import proyectoEstudiante.ejercicio.infraestructure.controller.dto.output.EstudianteOutputDto;
 
 import javax.persistence.Column;
 
 @Data
 @AllArgsConstructor
+@EqualsAndHashCode
 public class EstudianteInputDto {
 
     private String nombre;
@@ -29,14 +31,14 @@ public class EstudianteInputDto {
 
         if (e == null)
             return null;
-        if (!e.nombre.matches("^[0-9]+$")) {
+        if (e.nombre.matches("^[0-9]+$")) {
             e.setNombre("Nombre invalido");
         }
         if(e.nombre == null)
             e.setNombre("nombre vacio");
-
-        if (!e.apellidos.matches("^[0-9]+$")) {
-            e.setNombre("Apellidos invalidos");
+        System.out.println();
+        if (e.apellidos.matches("^[0-9]+$")) {
+            e.setApellidos("Apellidos invalidos");
         }
         if(e.apellidos == null)
             e.setApellidos("apellidos vacio");
@@ -47,17 +49,18 @@ public class EstudianteInputDto {
         if(e.numHorasSemanales < 0 || e.numHorasSemanales > 40 || Double.isNaN(e.numHorasSemanales))
             e.setNumHorasSemanales(0);
 
-        if (!e.especialidad.equalsIgnoreCase("front") ||
-                !e.especialidad.equalsIgnoreCase("back" )
-        ||e.especialidad == null)
-            e.setEspecialidad("Sin definir");
 
 
-        if (!e.estado.equalsIgnoreCase("activo") ||
-                !e.estado.equalsIgnoreCase("inactivo")
-        ||e.estado == null)
+        if (
+                e.especialidad.equalsIgnoreCase("front")   ||
+                e.especialidad.equalsIgnoreCase("back" )
+        ){}else e.setEspecialidad("Especialidad sin definir");
 
-            e.setEstado("Sin definir");
+
+
+        if (e.getEstado().equalsIgnoreCase("activo") ||
+                e.getEstado().equalsIgnoreCase("inactivo")
+        ){}else e.setEstado("Estado sin definir");
 
 
         return  e;
