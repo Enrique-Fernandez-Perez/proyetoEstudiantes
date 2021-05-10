@@ -18,9 +18,6 @@ import java.time.LocalDate;
 import java.util.Date;
 
 
-enum branch {FRONT, BACK, DEVOPS, UNASIGNED}
-
-
 @Entity
 @Data
 @ToString

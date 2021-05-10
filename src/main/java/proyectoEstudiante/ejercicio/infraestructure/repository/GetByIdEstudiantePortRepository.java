@@ -26,14 +26,16 @@ public class GetByIdEstudiantePortRepository implements GetByIdEstudiantePort {
 
 
         EstudianteOutputDto estudianteOutputDto= new EstudianteOutputDto(
-                estudianteJpa.getNombre(),
-                estudianteJpa.getApellidos(),
-                estudianteJpa.getEmail(),
-                estudianteJpa.getFechaEntrada(),
-                estudianteJpa.getCiudad(),
-                estudianteJpa.getNumHorasSemanales(),
-                estudianteJpa.getEspecialidad(),
-                estudianteJpa.getEstado()
+                estudianteJpa.getSurname(),
+        estudianteJpa.getCompany_email(),
+        estudianteJpa.getPersonal_email(),
+        estudianteJpa.getCity(),
+        estudianteJpa.getNum_hours_week(),
+        estudianteJpa.getComments(),
+        estudianteJpa.getBranch(),
+        estudianteJpa.isActive(),
+        estudianteJpa.getCreated_date(),
+        estudianteJpa.getTermination_date()
         );
         return  estudianteOutputDto;
     }

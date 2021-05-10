@@ -1,80 +1,50 @@
 package proyectoEstudiante.ejercicio.infraestructure.controller.dto.input;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import proyectoEstudiante.ejercicio.domain.branch;
 import proyectoEstudiante.ejercicio.infraestructure.controller.dto.output.EstudianteOutputDto;
 
 import javax.persistence.Column;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @EqualsAndHashCode
 public class EstudianteInputDto {
 
-    private String nombre;
+    private String name;
 
-    private String apellidos;
+    private String Surname;
 
-    private String email;
+    private String company_email;
 
-    @JsonFormat(pattern="MM/dd/yyyy")
-    private LocalDate fechaEntrada;
+    private String personal_email;
 
-    private String ciudad;
+    private String city;
 
-    private double numHorasSemanales;
+    private int num_hours_week;
 
-    private String especialidad;
+    private String comments;
 
-    private String estado;
+    private branch branch;
+
+    private boolean active;
+
+    @JsonFormat(pattern = "MM/dd/yyyy")
+    private Date created_date;
+
+    @JsonFormat(pattern = "MM/dd/yyyy")
+    private Date termination_date;
 
 
 
 
     public EstudianteInputDto dtoInputComprobador(EstudianteInputDto e) {
-
-        if (e == null)
-            return null;
-        if (e.nombre.matches("^[0-9]+$")) {
-            e.setNombre("Nombre invalido");
-        }
-        if(e.nombre == null)
-            e.setNombre("nombre vacio");
-        System.out.println();
-        if (e.apellidos.matches("^[0-9]+$")) {
-            e.setApellidos("Apellidos invalidos");
-        }
-        if(e.apellidos == null)
-            e.setApellidos("apellidos vacio");
-
-        if(e.email == null)
-            e.setEmail("email vacio");
-
-        if (e.ciudad.matches("^[0-9]+$")) {
-            e.setApellidos("Ciudad Invalida");
-        }
-        if(e.ciudad == null)
-            e.setApellidos("Ciudad vacia");
-
-        if(e.numHorasSemanales < 0 || e.numHorasSemanales > 40 || Double.isNaN(e.numHorasSemanales))
-            e.setNumHorasSemanales(0);
-
-
-
-        if (
-                e.especialidad.equalsIgnoreCase("front")   ||
-                e.especialidad.equalsIgnoreCase("back" )
-        ){}else e.setEspecialidad("Especialidad sin definir");
-
-
-
-        if (e.getEstado().equalsIgnoreCase("activo") ||
-                e.getEstado().equalsIgnoreCase("inactivo")
-        ){}else e.setEstado("Estado sin definir");
-
 
         return  e;
     }

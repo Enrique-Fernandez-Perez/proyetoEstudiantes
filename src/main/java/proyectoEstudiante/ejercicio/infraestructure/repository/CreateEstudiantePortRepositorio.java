@@ -20,14 +20,17 @@ public class CreateEstudiantePortRepositorio implements CreateEstudiantePort {
 
         estudianteInputDto.dtoInputComprobador(estudianteInputDto);
 
-        estudianteJpa.setNombre(estudianteInputDto.getNombre());
-        estudianteJpa.setApellidos(estudianteInputDto.getApellidos());
-        estudianteJpa.setEmail(estudianteInputDto.getEmail());
-        estudianteJpa.setFechaEntrada(estudianteInputDto.getFechaEntrada());
-        estudianteJpa.setCiudad(estudianteInputDto.getCiudad());
-        estudianteJpa.setNumHorasSemanales(estudianteInputDto.getNumHorasSemanales());
-        estudianteJpa.setEspecialidad(estudianteInputDto.getEspecialidad());
-        estudianteJpa.setEstado(estudianteInputDto.getEstado());
+        estudianteJpa.setSurname(estudianteInputDto.getSurname());
+        estudianteJpa.setCompany_email(estudianteInputDto.getCompany_email());
+        estudianteJpa.setPersonal_email(estudianteInputDto.getPersonal_email());
+        estudianteJpa.setCity(estudianteInputDto.getCity());
+        estudianteJpa.setNum_hours_week(estudianteInputDto.getNum_hours_week());
+        estudianteJpa.setComments(estudianteInputDto.getComments());
+        estudianteJpa.setBranch(estudianteInputDto.getBranch());
+        estudianteJpa.setActive(estudianteInputDto.isActive());
+        estudianteJpa.setCreated_date(estudianteInputDto.getCreated_date());
+        estudianteJpa.setTermination_date(estudianteInputDto.getTermination_date());
+
 
         estudianteJpaRepository.save(estudianteJpa);
     }

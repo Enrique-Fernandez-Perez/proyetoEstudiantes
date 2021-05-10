@@ -20,14 +20,16 @@ public class GetEstudiantePortRepository implements GetEstudiantePort {
         List<EstudianteJpa> estudianteJpas = estudianteJpaRepository.findAll();
 
         List<EstudianteOutputDto> estudianteOutputDtos = estudianteJpas.stream().map(estudianteJpa -> new EstudianteOutputDto(
-                        estudianteJpa.getNombre(),
-                        estudianteJpa.getApellidos(),
-                        estudianteJpa.getEmail(),
-                        estudianteJpa.getFechaEntrada(),
-                        estudianteJpa.getCiudad(),
-                        estudianteJpa.getNumHorasSemanales(),
-                        estudianteJpa.getEspecialidad(),
-                        estudianteJpa.getEstado()
+                estudianteJpa.getSurname(),
+                estudianteJpa.getCompany_email(),
+                estudianteJpa.getPersonal_email(),
+                estudianteJpa.getCity(),
+                estudianteJpa.getNum_hours_week(),
+                estudianteJpa.getComments(),
+                estudianteJpa.getBranch(),
+                estudianteJpa.isActive(),
+                estudianteJpa.getCreated_date(),
+                estudianteJpa.getTermination_date()
 
                 )
         ).collect(Collectors.toList());
