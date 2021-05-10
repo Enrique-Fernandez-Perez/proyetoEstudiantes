@@ -1,11 +1,25 @@
 package proyectoEstudiante.ejercicio.domain;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+
+import org.hibernate.annotations.Parameter;
+import org.springframework.dao.DataAccessException;
+import proyectoEstudiante.ejercicio.infraestructure.configs.StringPrefixedSequenceIdGenerator;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.time.LocalDate;
+import java.util.Date;
+
+
+enum branch {FRONT, BACK, DEVOPS, UNASIGNED}
+
 
 @Entity
 @Data
@@ -16,38 +30,64 @@ import java.time.LocalDate;
 public class EstudianteJpa {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "estudiantes_seq")
+    @GenericGenerator(
+            name = "ausencias_seq",
+            strategy = "com.bosonit.staffit.shared.sequences.StringPrefixedSequenceIdGenerator",
+            parameters = {
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "1"),
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "EST"),
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%08d")
+            })
     @Column(name = "id_estudiante")
     private int id;
-    @Column
-    private String nombre;
-    @Column
-    private String apellidos;
-    @Column
-    private String email;
-    @Column
-    @JsonFormat(pattern="MM/dd/yyyy")
-    private LocalDate fechaEntrada;
 
     @Column
-    private String ciudad;
+    @NotNull
+    private String name;
+
     @Column
-    private double numHorasSemanales;
+    @NotNull
+    private String Surname;
+
     @Column
-    private String especialidad;
+    @NotNull
+    private String company_email;
+
     @Column
-    private String estado;
+    @NotNull
+    private String personal_email;
+
+    @Column
+    @NotNull
+    private String city;
+
+    @Column
+    @NotNull
+    private int num_hours_week;
+
+    @Column
+    private String comments;
+
+    @Column
+    @NotNull
+    private branch branch;
+
+    @Column
+    @NotNull
+    private boolean active;
 
 
-    public EstudianteJpa(String nombre, String apellidos, String email, LocalDate fechaEntrada, String ciudad, double numHorasSemanales, String especialidad, String estado) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.email = email;
-        this.fechaEntrada = fechaEntrada;
-        this.ciudad = ciudad;
-        this.numHorasSemanales = numHorasSemanales;
-        this.especialidad = especialidad;
-        this.estado = estado;
-    }
+    @Column
+    @NotNull
+    @JsonFormat(pattern = "MM/dd/yyyy")
+    private Date created_date;
+
+    @Column
+    @NotNull
+    @JsonFormat(pattern = "MM/dd/yyyy")
+    private Date termination_date;
 }
+
+
+
