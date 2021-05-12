@@ -3,6 +3,7 @@ package proyectoEstudiante.ejercicio.infraestructure.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import proyectoEstudiante.ejercicio.Exceptions.NotFoundException;
 import proyectoEstudiante.ejercicio.domain.EstudianteJpa;
 import proyectoEstudiante.ejercicio.infraestructure.controller.dto.output.EstudianteOutputDto;
 import proyectoEstudiante.ejercicio.infraestructure.repository.jpa.EstudianteJpaRepository;
@@ -20,9 +21,9 @@ public class GetByIdEstudiantePortRepository implements GetByIdEstudiantePort {
 
 
     @Override
-    public EstudianteOutputDto getEstudiantebyId(int id) throws Exception {
+    public EstudianteOutputDto getEstudiantebyId(int id) throws NotFoundException {
 
-        EstudianteJpa estudianteJpa = estudianteJpaRepository.findById(id).orElseThrow(()->new Exception("Algo ha fallado"));
+        EstudianteJpa estudianteJpa = estudianteJpaRepository.findById(id).orElseThrow(()->new NotFoundException("Usuario no encontrado."));
 
 
         EstudianteOutputDto estudianteOutputDto= new EstudianteOutputDto(
