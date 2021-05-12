@@ -1,6 +1,8 @@
 package proyectoEstudiante.ejercicio.infraestructure.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +22,14 @@ public class GetEstudianteController {
     GetEstudiantePortRepository getEstudiantePortRepository;
 
     @GetMapping("/all")
-    public List<EstudianteOutputDto> GetEstudiantes(){
+    public ResponseEntity<List<EstudianteOutputDto>> GetEstudiantes(){
 
-        return getEstudiantePortRepository.getAllEstudiante();
+        try {
+            getEstudiantePortRepository.getAllEstudiante();
+            return ResponseEntity.accepted().build();
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
     }
 }

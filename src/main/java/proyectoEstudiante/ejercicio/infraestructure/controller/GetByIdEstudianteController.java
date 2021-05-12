@@ -1,6 +1,8 @@
 package proyectoEstudiante.ejercicio.infraestructure.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import proyectoEstudiante.ejercicio.Exceptions.NotFoundException;
@@ -15,9 +17,16 @@ public class GetByIdEstudianteController {
     GetByIdEstudiantePortRepository getByIdEstudiantePortRepository;
 
     @GetMapping({"id"})
-    public EstudianteOutputDto GetEstudiantebyId(@PathVariable int id) throws NotFoundException {
+    public ResponseEntity<EstudianteOutputDto> GetEstudiantebyId(@PathVariable int id) throws NotFoundException {
 
-       return getByIdEstudiantePortRepository.getEstudiantebyId(id);
+        try{
+            getByIdEstudiantePortRepository.getEstudiantebyId(id);
+            return ResponseEntity.accepted().build();
+        }catch (Exception e){
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
+
 
 }
