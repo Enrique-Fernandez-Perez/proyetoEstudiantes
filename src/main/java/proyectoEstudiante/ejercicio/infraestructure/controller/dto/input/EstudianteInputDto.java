@@ -69,4 +69,13 @@ public class EstudianteInputDto {
 
         return  msgError;
     }
+
+    public boolean comprobadorFechas(EstudianteInputDto estudianteInputDto){
+
+        if(estudianteInputDto.getTermination_date() == null || estudianteInputDto.getCreated_date() == null){
+            return true;
+        }else{
+            return estudianteInputDto.getCreated_date().before(estudianteInputDto.getTermination_date());
+        }
+    }
 }

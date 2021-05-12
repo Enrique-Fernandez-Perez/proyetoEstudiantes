@@ -18,10 +18,14 @@ public class CreateEstudiantePortRepositorio implements CreateEstudiantePort {
 
     @Override
     public ResponseEntity createEstudiante(EstudianteInputDto estudianteInputDto) {
-        EstudianteJpa estudianteJpa = new EstudianteJpa();
+
 
         List<String> msgError= estudianteInputDto.dtoInputComprobador(estudianteInputDto);
-        if (msgError !=null)
+        boolean comprobadorFechas = estudianteInputDto.comprobadorFechas(estudianteInputDto);
+
+        EstudianteJpa estudianteJpa = new EstudianteJpa();
+
+        if (comprobadorFechas == true|| msgError !=null)
             return ResponseEntity.badRequest().body("Error al crear el usuario");
         else {
             estudianteJpa.setSurname(estudianteInputDto.getSurname());
