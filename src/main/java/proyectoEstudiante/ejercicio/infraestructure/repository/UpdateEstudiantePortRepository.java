@@ -1,7 +1,6 @@
 package proyectoEstudiante.ejercicio.infraestructure.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import proyectoEstudiante.ejercicio.Exceptions.UpdateErrorException;
 import proyectoEstudiante.ejercicio.infraestructure.controller.dto.input.EstudianteInputDto;
 import proyectoEstudiante.ejercicio.infraestructure.controller.dto.output.EstudianteOutputDto;

@@ -10,7 +10,9 @@ import proyectoEstudiante.ejercicio.infraestructure.controller.dto.output.Estudi
 
 import javax.persistence.Column;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -19,7 +21,7 @@ public class EstudianteInputDto {
 
     private String name;
 
-    private String Surname;
+    private String surname;
 
     private String company_email;
 
@@ -44,8 +46,27 @@ public class EstudianteInputDto {
 
 
 
-    public EstudianteInputDto dtoInputComprobador(EstudianteInputDto e) {
+    public List dtoInputComprobador(EstudianteInputDto e) {
+        List<String> msgError = new ArrayList<>();
+        if (name== null ||
+                surname == null ||
+                company_email == null ||
+                personal_email == null ||
+                city == null ||
+                comments == null ||
+                branch == null ||
+                created_date == null ||
+                termination_date == null
+        )
+            msgError.add("-Campos Vacios-");
 
-        return  e;
+        if (name.matches("^[0-9]+$") ||
+                surname.matches("^[0-9]+$") ||
+                city.matches("^[0-9]+$")
+
+        )
+            msgError.add("-Campos con caracteres no validos-");
+
+        return  msgError;
     }
 }

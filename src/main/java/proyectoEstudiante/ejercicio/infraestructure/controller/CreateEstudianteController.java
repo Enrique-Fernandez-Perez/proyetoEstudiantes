@@ -20,8 +20,7 @@ public class CreateEstudianteController {
     @PostMapping("/")
     public ResponseEntity PostEstudiante(@RequestBody EstudianteInputDto estudianteInputDto) {
         try {
-            createEstudiantePortRepositorio.createEstudiante(estudianteInputDto);
-            return ResponseEntity.accepted().body("Creado con exito");
+            return   createEstudiantePortRepositorio.createEstudiante(estudianteInputDto);
         } catch (Exception e) {
             System.out.println(e);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al crear");
