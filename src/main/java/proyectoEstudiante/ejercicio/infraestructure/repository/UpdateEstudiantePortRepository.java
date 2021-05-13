@@ -7,6 +7,8 @@ import proyectoEstudiante.ejercicio.infraestructure.controller.dto.output.Estudi
 import proyectoEstudiante.ejercicio.infraestructure.repository.jpa.EstudianteJpaRepository;
 import proyectoEstudiante.ejercicio.infraestructure.repository.portOservicio.UpdateEstudiantePort;
 
+import java.util.List;
+
 public class UpdateEstudiantePortRepository implements UpdateEstudiantePort {
 
     @Autowired
@@ -15,7 +17,17 @@ public class UpdateEstudiantePortRepository implements UpdateEstudiantePort {
     @Override
     public EstudianteOutputDto updateEstudiante(int id, EstudianteInputDto estudianteInputDto) throws UpdateErrorException {
         return estudianteJpaRepository.findById(id).map(estudianteJpa -> {
-                    estudianteInputDto.dtoInputComprobador(estudianteInputDto);
+
+                   List<String> msgError = estudianteInputDto.dtoInputComprobador(estudianteInputDto);
+                    boolean comprobadorFechas = estudianteInputDto.comprobadorFechas(estudianteInputDto);
+                    if (comprobadorFechas == true|| msgError !=null){
+                        try {
+                            throw new UpdateErrorException("Campos que contienen errores");
+                        } catch (UpdateErrorException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
 
 
                     estudianteJpa.setName(estudianteInputDto.getName());

@@ -10,10 +10,8 @@ import org.hibernate.annotations.Parameter;
 import org.springframework.dao.DataAccessException;
 import proyectoEstudiante.ejercicio.infraestructure.configs.StringPrefixedSequenceIdGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
+import java.lang.annotation.Repeatable;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -47,11 +45,12 @@ public class EstudianteJpa {
     @NotNull
     private String Surname;
 
-    @Column
+    @Column(unique = true)
     @NotNull
+
     private String company_email;
 
-    @Column
+    @Column(unique = true)
     @NotNull
     private String personal_email;
 
